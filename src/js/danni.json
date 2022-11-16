@@ -1,0 +1,37 @@
+{
+  "News": [
+    {
+      "Headers": "Как писать код быстро и безболезненно?",
+      "Slogan": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Elementum volutpat orci turpis urna. Et vestibulum, posuere tortor lacinia sit. Sagittis porttitor orci auctor in at tincidunt arcu egestas. Fusce arcu sodales lacinia eu auctor nunc nam id. Diam sit sed volutpat massa. Egestas ornare vel volutpat.",
+      "Date": "21.06.2020",
+      "subtitle": "создание сайтов",
+      "photo": "src/img/one_news.svg",
+      "Slogan_left": "читать"
+    },
+    {
+      "Headers": "Купил новый ноутбук за 150 000 руб",
+      "Slogan": "",
+      "Date": "21.06.2020",
+      "subtitle": "продвижение видео",
+      "photo": "src/img/two_news.svg",
+      "Slogan_left": "оставить комментарий"
+    },
+    {
+      "Headers": "Как я сходил на FrontEnd Conf 2021",
+      "Slogan": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Elementum volutpat orci turpis urna. Et vestibulum, posuere tortor lacinia sit. Sagittis porttitor orci auctor in at tincidunt arcu egestas. Fusce arcu sodales lacinia eu auctor nunc nam id. Diam sit sed volutpat massa. Egestas ornare vel volutpat.",
+      "Date": "21.06.2020",
+      "subtitle": "создание сайтов",
+      "photo": "src/img/fre_news.svg",
+      "Slogan_left": "читать"
+    }
+  ],
+  "Profil": [
+    {
+      "Name": "Майк Вазовский",
+      "Mail": "perevozchikov.t.a@gmail.com",
+      "Password": "1234",
+      "owners": "",
+      "id": 0.5954153949698613
+    }
+  ]
+}
