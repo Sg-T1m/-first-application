@@ -183,7 +183,6 @@ function CreatWindowRegistr() {
   `;
   Home_Listners.innerHTML = "";
   Home_Listners.appendChild(Regist);
-
   const formRegistr = document.querySelector(`.Form_Registrs`);
   const inputName = document.querySelector(`.Registrs_Name`);
   const inputMail = formRegistr.querySelector(`.Registrs_Mail`);
@@ -214,12 +213,7 @@ function CreatWindowRegistr() {
     } else {
       SumbitProfile(inputName, inputMail, inputPassword);
     }
-
-    //
-
-    //
   });
-  //
 }
 
 function chekInputName(value) {
