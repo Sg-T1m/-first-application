@@ -194,51 +194,25 @@ function CreatWindowRegistr() {
   );
   const ButtonSubmitProfil = document.querySelector(`.Registrs_Button_Save`);
 
-  async function saveProfile(url, data) {
-    await fetch(`${url}`, {
-      method: "post",
-      body: JSON.stringify(data),
-      headers: {
-        "Content-type": "application/json",
-      },
-    });
-    clear_input();
-    console.log(data);
-  }
-  function clear_input(e) {
-    inputName.value = "";
-    inputMail.value = "";
-    inputPassword.value = "";
-    inputСonfirmationPassword.value = "";
-  }
-
-  function SumbitProfile(e) {
-    const data = {
-      Name: inputName.value,
-      Mail: inputMail.value,
-      Password: inputPassword.value,
-      owners: "",
-      id: Math.random(),
-    };
-    console.log(data);
-    saveProfile("http://localhost:3000/Profil", data);
-  }
   ButtonSubmitProfil.addEventListener("click", () => {
     if (!chekInputName(inputName.value)) {
       Errors.innerHTML = "";
+      
       errorName();
     } else if (!chekInputMail(inputMail.value)) {
       Errors.innerHTML = "";
       inputName.classList.remove("Error");
       errorMail();
     } else if (
-      !chekInputPassword(inputPassword.value, inputСonfirmationPassword.value)
+      chekInputPassword(inputPassword.value, inputСonfirmationPassword.value)
     ) {
+      console.log();
+      inputName.classList.remove("Error");
       Errors.innerHTML = "";
       errorPassword();
       inputMail.classList.remove("Error");
     } else {
-      SumbitProfile();
+      SumbitProfile(inputName, inputMail, inputPassword);
     }
     function errorMail() {
       inputMail.classList.add("Error");
@@ -282,5 +256,35 @@ function chekInputMail(value) {
   return value.length >= 5;
 }
 function chekInputPassword(password1, password2) {
-  return password1.length == password2.length, password1.length >= 1;
+  return password1 != password2 || password1.length <= 1;
+}
+function clear_input(Name, Mail, Password1, Password2) {
+  //Очистка профиля
+  Name.value = "";
+  Mail.value = "";
+  Password1.value = "";
+  Password2.value = "";
+}
+async function saveProfile(url, data) {
+  await fetch(`${url}`, {
+    method: "post",
+    body: JSON.stringify(data),
+    headers: {
+      "Content-type": "application/json",
+    },
+  });
+  clear_input(inputName, inputMail, inputPassword, inputСonfirmationPassword);
+  console.log(data);
+}
+
+function SumbitProfile(Names, Mails, Passwords) {
+  const data = {
+    Name: Names.value,
+    Mail: Mails.value,
+    Password: Passwords.value,
+    owners: "",
+    id: Math.random(),
+  };
+  console.log(data);
+  saveProfile("http://localhost:3000/Profil", data);
 }
