@@ -197,54 +197,27 @@ function CreatWindowRegistr() {
   ButtonSubmitProfil.addEventListener("click", () => {
     if (!chekInputName(inputName.value)) {
       Errors.innerHTML = "";
-      
-      errorName();
+
+      errorName(inputName, Errors);
     } else if (!chekInputMail(inputMail.value)) {
       Errors.innerHTML = "";
       inputName.classList.remove("Error");
-      errorMail();
+      errorMail(inputMail, Errors);
     } else if (
       chekInputPassword(inputPassword.value, inputСonfirmationPassword.value)
     ) {
       console.log();
       inputName.classList.remove("Error");
       Errors.innerHTML = "";
-      errorPassword();
       inputMail.classList.remove("Error");
+      errorPassword(inputPassword, inputСonfirmationPassword, Errors);
     } else {
       SumbitProfile(inputName, inputMail, inputPassword);
     }
-    function errorMail() {
-      inputMail.classList.add("Error");
-      let errorMails = document.createElement("div");
-      errorMails.classList.add("Errors_conatiner");
-      errorMails.innerHTML = `
-    <p>Недостаточное количство символов в Mail, минимум 5</p>
-    `;
-      Errors.appendChild(errorMails);
-    }
 
     //
-    function errorName() {
-      inputName.classList.add("Error");
-      let errorNames = document.createElement("div");
-      errorNames.classList.add("Errors_conatiner");
-      errorNames.innerHTML = `
-    <p>Недостаточное количство символов в Name, минимум 5</p>
-    `;
-      Errors.appendChild(errorNames);
-    }
+
     //
-    function errorPassword() {
-      inputPassword.classList.add("Error");
-      inputСonfirmationPassword.classList.add("Error");
-      let errorPassword = document.createElement("div");
-      errorPassword.classList.add("Errors_conatiner");
-      errorPassword.innerHTML = `
-    <p>Пароли не совпадают или пароль слишком короткией</p>
-    `;
-      Errors.appendChild(errorPassword);
-    }
   });
   //
 }
@@ -287,4 +260,34 @@ function SumbitProfile(Names, Mails, Passwords) {
   };
   console.log(data);
   saveProfile("http://localhost:3000/Profil", data);
+}
+
+function errorName(InputError, Put) {
+  InputError.classList.add("Error");
+  let errorNames = document.createElement("div");
+  errorNames.classList.add("Errors_conatiner");
+  errorNames.innerHTML = `
+<p>Недостаточное количство символов в Name, минимум 5</p>
+`;
+  Put.appendChild(errorNames);
+}
+
+function errorMail(mailError, Put) {
+  mailError.classList.add("Error");
+  let errorMails = document.createElement("div");
+  errorMails.classList.add("Errors_conatiner");
+  errorMails.innerHTML = `
+<p>Недостаточное количство символов в Mail, минимум 5</p>
+`;
+  Put.appendChild(errorMails);
+}
+function errorPassword(PasswordError, PasswordError2, Put) {
+  PasswordError.classList.add("Error");
+  PasswordError2.classList.add("Error");
+  let errorPassword = document.createElement("div");
+  errorPassword.classList.add("Errors_conatiner");
+  errorPassword.innerHTML = `
+<p>Пароли не совпадают или пароль слишком короткией</p>
+`;
+  Put.appendChild(errorPassword);
 }
