@@ -194,26 +194,35 @@ function CreatWindowRegistr() {
   const ButtonSubmitProfil = document.querySelector(`.Registrs_Button_Save`);
 
   ButtonSubmitProfil.addEventListener("click", () => {
-    if (!chekInputName(inputName.value)) {
-      Errors.innerHTML = "";
-
-      errorName(inputName, Errors);
-    } else if (!chekInputMail(inputMail.value)) {
-      Errors.innerHTML = "";
-      inputName.classList.remove("Error");
-      errorMail(inputMail, Errors);
-    } else if (
-      chekInputPassword(inputPassword.value, inputСonfirmationPassword.value)
-    ) {
-      console.log();
-      inputName.classList.remove("Error");
-      Errors.innerHTML = "";
-      inputMail.classList.remove("Error");
-      errorPassword(inputPassword, inputСonfirmationPassword, Errors);
-    } else {
-      SumbitProfile(inputName, inputMail, inputPassword);
-    }
+    ChekRegistr(
+      inputName,
+      inputMail,
+      inputPassword,
+      inputСonfirmationPassword,
+      Errors
+    );
   });
+}
+
+function ChekRegistr(Name, Mail, Password, PasswordTwo, Put) {
+  if (!chekInputName(Name.value)) {
+    Put.innerHTML = "";
+
+    errorName(Name, Put);
+  } else if (!chekInputMail(Mail.value)) {
+    Put.innerHTML = "";
+    Mail.classList.remove("Error");
+    Name.classList.remove("Error");
+    errorMail(Mail, Put);
+  } else if (chekInputPassword(Password.value, PasswordTwo.value)) {
+    console.log();
+    Name.classList.remove("Error");
+    Put.innerHTML = "";
+    Mail.classList.remove("Error");
+    errorPassword(Password, PasswordTwo, Put);
+  } else {
+    SumbitProfile(Name, Mail, Password);
+  }
 }
 
 function chekInputName(value) {
