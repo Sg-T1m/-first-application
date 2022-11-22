@@ -19,7 +19,7 @@ modal_meny === null || modal_meny === void 0
     });
 window.addEventListener("DOMContentLoaded", () => {
   req();
-  
+  checkLocalStoreg()
 });
 function req() {
   fetch(" http://localhost:3000/News")
@@ -220,7 +220,6 @@ function ChekRegistr(Name, Mail, Password, PasswordTwo, Put) {
     Name.classList.remove("Error");
     errorMail(Mail, Put);
   } else if (chekInputPassword(Password.value, PasswordTwo.value)) {
-    console.log();
     Name.classList.remove("Error");
     Put.innerHTML = "";
     Mail.classList.remove("Error");
@@ -254,8 +253,8 @@ async function saveProfile(url, data) {
       "Content-type": "application/json",
     },
   });
-  clear_input(inputName, inputMail, inputPassword, inputСonfirmationPassword);
-  console.log(data);
+  // clear_input(inputName, inputMail, inputPassword, inputСonfirmationPassword);
+ 
 }
 
 function SumbitProfile(Names, Mails, Passwords) {
@@ -266,7 +265,7 @@ function SumbitProfile(Names, Mails, Passwords) {
     owners: "",
     id: Math.random(),
   };
-  console.log(data);
+ 
   saveProfile("http://localhost:3000/Profil", data);
 }
 
@@ -317,7 +316,7 @@ function DannieLogins() {
 function ChekDannie(Dannie){
   let mailLogin = document.querySelector(`.mail`)
   let passwordLogin = document.querySelector(`.password`)
-  console.log(Dannie)
+  
   let long = Dannie.length
   for(let i = 0; i<long; i++){
     if (mailLogin.value ==Dannie[i].Mail){
@@ -335,9 +334,9 @@ function ChekPass(Dannie, pass) { // Проверка пароля
   if(Dannie.Password == pass){
     let ListRefistr = document.querySelector(`.Errors_registr`)
     CheckOwners(Dannie)
-    console.log(`dv d`, Dannie)
-    ListRefistr.innerHTML = "";
     
+    ListRefistr.innerHTML = "";
+    SaveLocalStorege(Dannie.id)
   }else{
     ErrorLogin()
   }
@@ -364,9 +363,10 @@ function errorNotUzers (){
 }
 function CheckOwners(Dannie){
   let check = "Admin"
-  console.log(Dannie.owners)
+ 
   if(Dannie.owners == check){
     WritePost()
+    
   }
   else{
     CloseWritePost()
@@ -379,4 +379,50 @@ function WritePost(){
 
 function CloseWritePost(){
   BtnWritePost.classList.remove(`Visible`)
+}
+function SaveLocalStorege(id){
+  localStorage.setItem('id', id);
+  
+  
+  const localka={
+    id: localStorage.getItem(`id`)
+  }
+
+  saveProfile("http://localhost:3000/Localc", localka)
+  
+}
+function checkLocalStoreg() {
+  fetch("http://localhost:3000/Localc")
+    .then((data) => data.json())
+    .then((data) => ChekDannieLocal(data))
+    .catch((err) => console.error(err));
+}
+
+function ChekDannieLocal(dataLocal) {
+  long = dataLocal.length
+  for(let i = 0; i<long; i++){
+    if(dataLocal[i].id == localStorage.getItem(`id`)){
+      Checkowner(dataLocal[i].id)
+      
+      break
+    }
+  }
+ 
+}
+function Checkowner(id) {
+  fetch("http://localhost:3000/Profil")
+    .then((data) => data.json())
+    .then((data) => checkId(data,id))
+    .catch((err) => console.error(err));
+  
+}
+function checkId(dannie,id) {
+  let long = dannie.length
+  for(let i = 0; i<long; i++){
+    if(dannie[i].id == id){
+      CheckOwners(dannie[i])
+    }else{
+      
+    }
+  }
 }
