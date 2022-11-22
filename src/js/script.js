@@ -19,6 +19,7 @@ modal_meny === null || modal_meny === void 0
     });
 window.addEventListener("DOMContentLoaded", () => {
   req();
+  
 });
 function req() {
   fetch(" http://localhost:3000/News")
@@ -87,6 +88,8 @@ function ProfileOpen() {
           <a class="sharpen" href="#">восстановить</a>
           <a class="Registr" href="#">регистрация</a>
       </div>
+      <div class="Errors_registr">
+      </div>
   </div>
 
 
@@ -94,6 +97,7 @@ function ProfileOpen() {
   Home_Listners.innerHTML = "";
   Home_Listners.appendChild(Profilezen);
   Registrs();
+  authorization()
 }
 function home() {
   //Отрисовка главной по кнопке
@@ -179,6 +183,7 @@ function CreatWindowRegistr() {
                     <img class="Img_profile" src="src/img/avatarka.svg" alt="">
                     <a class="registr_new_img">выбрать  аватар</a>
                 </div>
+               
                
   `;
   Home_Listners.innerHTML = "";
@@ -293,4 +298,85 @@ function errorPassword(PasswordError, PasswordError2, Put) {
 <p>Пароли не совпадают или пароль слишком короткией</p>
 `;
   Put.appendChild(errorPassword);
+}
+function authorization(){
+const btnLogin = document.querySelector(`.login`)
+btnLogin.addEventListener(`click`,(e)=>{
+
+ 
+  e.preventDefault()
+  DannieLogins()
+})
+}
+function DannieLogins() {
+  fetch("http://localhost:3000/Profil")
+    .then((data) => data.json())
+    .then((data) => ChekDannie(data))
+    .catch((err) => console.error(err));
+}
+function ChekDannie(Dannie){
+  let mailLogin = document.querySelector(`.mail`)
+  let passwordLogin = document.querySelector(`.password`)
+  console.log(Dannie)
+  let long = Dannie.length
+  for(let i = 0; i<long; i++){
+    if (mailLogin.value ==Dannie[i].Mail){
+      let ProfileCheck = Dannie[i]
+       ChekPass(ProfileCheck, passwordLogin.value)
+      break
+    }else if ((i+1)==long){
+      errorNotUzers()
+    }
+   
+  }
+}
+
+function ChekPass(Dannie, pass) { // Проверка пароля
+  if(Dannie.Password == pass){
+    let ListRefistr = document.querySelector(`.Errors_registr`)
+    CheckOwners(Dannie)
+    console.log(`dv d`, Dannie)
+    ListRefistr.innerHTML = "";
+    
+  }else{
+    ErrorLogin()
+  }
+}
+function ErrorLogin() {
+  let ListRefistr = document.querySelector(`.Errors_registr`)
+  let Error = document.createElement("div");
+  Error.classList.add("Registr_Erors");
+  Error.innerHTML=`
+  <p class="tests">Вы ввели неправильный пароль</p>
+  `;
+  ListRefistr.innerHTML = "";
+  ListRefistr.appendChild(Error)
+}
+function errorNotUzers (){
+  let ListRefistr = document.querySelector(`.Errors_registr`)
+  let Error = document.createElement("div");
+  Error.classList.add("Registr_Erors");
+  Error.innerHTML=`
+  <p class="tests">Такого аккаунта нет</p>
+  `;
+  ListRefistr.innerHTML = "";
+  ListRefistr.appendChild(Error)
+}
+function CheckOwners(Dannie){
+  let check = "Admin"
+  console.log(Dannie.owners)
+  if(Dannie.owners == check){
+    WritePost()
+  }
+  else{
+    CloseWritePost()
+  }
+}
+const BtnWritePost = document.querySelector(`.Write_post`)
+function WritePost(){
+  BtnWritePost.classList.add(`Visible`)
+}
+
+function CloseWritePost(){
+  BtnWritePost.classList.remove(`Visible`)
 }

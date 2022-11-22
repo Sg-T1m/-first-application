@@ -767,3 +767,35 @@ a {
   font-size: 18px;
   color: red;
 }
+
+.tests {
+  color: red;
+  font-size: 18px;
+}
+
+.Errors_registr {
+  margin: 0 auto;
+  margin-top: 40px;
+  max-width: 250px;
+}
+
+.Write_post {
+  display: none;
+  height: 40px;
+  width: 120px;
+  border-radius: 25px;
+  box-shadow: 0px 7px 17px -10px rgba(242, 63, 63, 0.2);
+  font-family: "Roboto", sans-serif;
+  font-size: 12px;
+  color: rgb(255, 255, 255);
+  font-weight: 500;
+  line-height: 14px;
+  letter-spacing: 0em;
+  text-align: center;
+  background: purple;
+  margin-top: 20px;
+}
+
+.Visible {
+  display: block;
+}

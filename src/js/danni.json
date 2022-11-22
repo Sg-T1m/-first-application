@@ -30,8 +30,15 @@
       "Name": "Майк Вазовский",
       "Mail": "perevozchikov.t.a@gmail.com",
       "Password": "12345",
-      "owners": "",
+      "owners": "Admin",
       "id": 0.05434346232759757
+    },
+    {
+      "Name": "Володя",
+      "Mail": "piter@mail.ru",
+      "Password": "12345",
+      "owners": "",
+      "id": 0.032808291393898736
     }
   ]
 }
