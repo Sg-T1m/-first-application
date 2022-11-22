@@ -654,6 +654,10 @@ a {
   width: 280px;
 }
 
+.password:focus,
+.password:active,
+.mail:focus,
+.mail:active,
 .Registrs_Name:focus,
 .Registrs_Name:active,
 .Registrs_Mail:focus,
