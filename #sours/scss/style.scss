@@ -543,6 +543,10 @@ a {
   margin: 0 auto;
   width: 280px;
 }
+.password:focus,
+.password:active,
+.mail:focus,
+.mail:active,
 .Registrs_Name:focus,
 .Registrs_Name:active,
 .Registrs_Mail:focus,
@@ -628,15 +632,13 @@ a {
   color: rgba(16, 126, 255, 1);
   margin-left: 20px;
 }
-.Registrs_rigt{
-
+.Registrs_rigt {
   width: 200px;
- 
 }
-.Error{
+.Error {
   border-bottom: 1px solid red;
 }
-.Errors{
+.Errors {
   margin-top: 20px;
   font-size: 18px;
   color: red;
