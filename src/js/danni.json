@@ -23,6 +23,14 @@
       "subtitle": "создание сайтов",
       "photo": "src/img/fre_news.svg",
       "Slogan_left": "читать"
+    },
+    {
+      "Headers": "Как писать код бысvvvvvтро и безболезненно?",
+      "Slogan": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Elementum volutpat orci turpis urna. Et vestibulum, posuere tortor lacinia sit. Sagittis porttitor orci auctor in at tincidunt arcu egestas. Fusce arcu sodales lacinia eu auctor nunc nam id. Diam sit sed volutpat massa. Egestas ornare vel volutpat.",
+      "Date": "21.06.2020",
+      "subtitle": "создание сайтов",
+      "photo": "src/img/one_news.svg",
+      "Slogan_left": "читать"
     }
   ],
   "Profil": [

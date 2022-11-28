@@ -543,6 +543,18 @@ a {
   margin: 0 auto;
   width: 280px;
 }
+.Write_posts_action:focus,
+.Write_posts_action:active,
+.Write_posts_Slogan:focus,
+.Write_posts_Slogan:active,
+.Write_posts_TExt:focus,
+.Write_posts_TExt:active,
+.Write_posts_data:focus,
+.Write_posts_data:active,
+.Write_posts_Header:focus,
+.Write_posts_Header:active,
+.Write_posts_img:focus,
+.Write_posts_img:active,
 .password:focus,
 .password:active,
 .mail:focus,
@@ -668,6 +680,43 @@ a {
   background: purple;
   margin-top: 20px;
 }
-.Visible{
+.Visible {
   display: block;
+}
+.Write_posts_img,
+.Write_posts_Header,
+.Write_posts_TExt,
+.Write_posts_Slogan,
+.Write_posts_action,
+.Write_posts_data {
+  width: 380px;
+  border-bottom: 1px solid rgba(63, 63, 63, 1);
+  margin-top: 30px;
+  background: rgba(24, 24, 24, 1);
+  font-family: $Roboto;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 16px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: rgba(255, 255, 255, 1);
+}
+.Container_write_post{
+  margin: 0 auto;
+  width: 300px;
+}
+.Write_posts_TExt{
+  height: 100px;
+}
+.Write_posts_btn{
+  height: 30px;
+  background-color: red;
+  width: 100px;
+  margin-top: 30px;
+  border-radius: 10px;
+  font-family: $Roboto;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 16px;
+  letter-spacing: 0em;
 }

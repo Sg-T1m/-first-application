@@ -19,7 +19,7 @@ modal_meny === null || modal_meny === void 0
     });
 window.addEventListener("DOMContentLoaded", () => {
   req();
-  checkLocalStoreg()
+  checkLocalStoreg();
 });
 function req() {
   fetch(" http://localhost:3000/News")
@@ -97,7 +97,7 @@ function ProfileOpen() {
   Home_Listners.innerHTML = "";
   Home_Listners.appendChild(Profilezen);
   Registrs();
-  authorization()
+  authorization();
 }
 function home() {
   //Отрисовка главной по кнопке
@@ -254,7 +254,6 @@ async function saveProfile(url, data) {
     },
   });
   // clear_input(inputName, inputMail, inputPassword, inputСonfirmationPassword);
- 
 }
 
 function SumbitProfile(Names, Mails, Passwords) {
@@ -265,7 +264,7 @@ function SumbitProfile(Names, Mails, Passwords) {
     owners: "",
     id: Math.random(),
   };
- 
+
   saveProfile("http://localhost:3000/Profil", data);
 }
 
@@ -298,14 +297,12 @@ function errorPassword(PasswordError, PasswordError2, Put) {
 `;
   Put.appendChild(errorPassword);
 }
-function authorization(){
-const btnLogin = document.querySelector(`.login`)
-btnLogin.addEventListener(`click`,(e)=>{
-
- 
-  e.preventDefault()
-  DannieLogins()
-})
+function authorization() {
+  const btnLogin = document.querySelector(`.login`);
+  btnLogin.addEventListener(`click`, (e) => {
+    e.preventDefault();
+    DannieLogins();
+  });
 }
 function DannieLogins() {
   fetch("http://localhost:3000/Profil")
@@ -313,83 +310,79 @@ function DannieLogins() {
     .then((data) => ChekDannie(data))
     .catch((err) => console.error(err));
 }
-function ChekDannie(Dannie){
-  let mailLogin = document.querySelector(`.mail`)
-  let passwordLogin = document.querySelector(`.password`)
-  
-  let long = Dannie.length
-  for(let i = 0; i<long; i++){
-    if (mailLogin.value ==Dannie[i].Mail){
-      let ProfileCheck = Dannie[i]
-       ChekPass(ProfileCheck, passwordLogin.value)
-      break
-    }else if ((i+1)==long){
-      errorNotUzers()
+function ChekDannie(Dannie) {
+  let mailLogin = document.querySelector(`.mail`);
+  let passwordLogin = document.querySelector(`.password`);
+
+  let long = Dannie.length;
+  for (let i = 0; i < long; i++) {
+    if (mailLogin.value == Dannie[i].Mail) {
+      let ProfileCheck = Dannie[i];
+      ChekPass(ProfileCheck, passwordLogin.value);
+      break;
+    } else if (i + 1 == long) {
+      errorNotUzers();
     }
-   
   }
 }
 
-function ChekPass(Dannie, pass) { // Проверка пароля
-  if(Dannie.Password == pass){
-    let ListRefistr = document.querySelector(`.Errors_registr`)
-    CheckOwners(Dannie)
-    
+function ChekPass(Dannie, pass) {
+  // Проверка пароля
+  if (Dannie.Password == pass) {
+    let ListRefistr = document.querySelector(`.Errors_registr`);
+    CheckOwners(Dannie);
+
     ListRefistr.innerHTML = "";
-    SaveLocalStorege(Dannie.id)
-  }else{
-    ErrorLogin()
+    SaveLocalStorege(Dannie.id);
+  } else {
+    ErrorLogin();
   }
 }
 function ErrorLogin() {
-  let ListRefistr = document.querySelector(`.Errors_registr`)
+  let ListRefistr = document.querySelector(`.Errors_registr`);
   let Error = document.createElement("div");
   Error.classList.add("Registr_Erors");
-  Error.innerHTML=`
+  Error.innerHTML = `
   <p class="tests">Вы ввели неправильный пароль</p>
   `;
   ListRefistr.innerHTML = "";
-  ListRefistr.appendChild(Error)
+  ListRefistr.appendChild(Error);
 }
-function errorNotUzers (){
-  let ListRefistr = document.querySelector(`.Errors_registr`)
+function errorNotUzers() {
+  let ListRefistr = document.querySelector(`.Errors_registr`);
   let Error = document.createElement("div");
   Error.classList.add("Registr_Erors");
-  Error.innerHTML=`
+  Error.innerHTML = `
   <p class="tests">Такого аккаунта нет</p>
   `;
   ListRefistr.innerHTML = "";
-  ListRefistr.appendChild(Error)
+  ListRefistr.appendChild(Error);
 }
-function CheckOwners(Dannie){
-  let check = "Admin"
- 
-  if(Dannie.owners == check){
-    WritePost()
-    
-  }
-  else{
-    CloseWritePost()
+function CheckOwners(Dannie) {
+  let check = "Admin";
+
+  if (Dannie.owners == check) {
+    WritePost();
+  } else {
+    CloseWritePost();
   }
 }
-const BtnWritePost = document.querySelector(`.Write_post`)
-function WritePost(){
-  BtnWritePost.classList.add(`Visible`)
+const BtnWritePost = document.querySelector(`.Write_post`);
+function WritePost() {
+  BtnWritePost.classList.add(`Visible`);
 }
 
-function CloseWritePost(){
-  BtnWritePost.classList.remove(`Visible`)
+function CloseWritePost() {
+  BtnWritePost.classList.remove(`Visible`);
 }
-function SaveLocalStorege(id){
-  localStorage.setItem('id', id);
-  
-  
-  const localka={
-    id: localStorage.getItem(`id`)
-  }
+function SaveLocalStorege(id) {
+  localStorage.setItem("id", id);
 
-  saveProfile("http://localhost:3000/Localc", localka)
-  
+  const localka = {
+    id: localStorage.getItem(`id`),
+  };
+
+  saveProfile("http://localhost:3000/Localc", localka);
 }
 function checkLocalStoreg() {
   fetch("http://localhost:3000/Localc")
@@ -399,30 +392,69 @@ function checkLocalStoreg() {
 }
 
 function ChekDannieLocal(dataLocal) {
-  long = dataLocal.length
-  for(let i = 0; i<long; i++){
-    if(dataLocal[i].id == localStorage.getItem(`id`)){
-      Checkowner(dataLocal[i].id)
-      
-      break
+  long = dataLocal.length;
+  for (let i = 0; i < long; i++) {
+    if (dataLocal[i].id == localStorage.getItem(`id`)) {
+      Checkowner(dataLocal[i].id);
+
+      break;
     }
   }
- 
 }
 function Checkowner(id) {
   fetch("http://localhost:3000/Profil")
     .then((data) => data.json())
-    .then((data) => checkId(data,id))
+    .then((data) => checkId(data, id))
     .catch((err) => console.error(err));
-  
 }
-function checkId(dannie,id) {
-  let long = dannie.length
-  for(let i = 0; i<long; i++){
-    if(dannie[i].id == id){
-      CheckOwners(dannie[i])
-    }else{
-      
+function checkId(dannie, id) {
+  let long = dannie.length;
+  for (let i = 0; i < long; i++) {
+    if (dannie[i].id == id) {
+      CheckOwners(dannie[i]);
+    } else {
     }
   }
+}
+BtnWritePost.addEventListener("click", () => {
+  console.log(`pivo`);
+  let WritePostDisplay = document.createElement("div");
+  WritePostDisplay.classList.add("Container_write_post");
+  WritePostDisplay.innerHTML = `
+                  <form action="" class="Write_posts">
+                    <input class="Write_posts_img" type="text" placeholder="Введите url, на картинку">
+                        <input class="Write_posts_Header" type="text" placeholder="Введите заголовок статьи">
+                        <textarea class="Write_posts_TExt" type="text" placeholder="Введите текст статьи"></textarea>
+                        <input class="Write_posts_Slogan" type="text" placeholder="Введите подпись">
+                        <input class="Write_posts_action" placeholder="Введите дейстиве к записи" type="text">
+                        <input class="Write_posts_data" placeholder="Дата формата 00.00.00" type="data">
+                        <button class="Write_posts_btn">Соханить</button>
+                    </form>
+  
+  `;
+  Home_Listners.innerHTML = "";
+  Home_Listners.appendChild(WritePostDisplay)
+  const postImg = document.querySelector(`.Write_posts_img`)
+  const postHeader = document.querySelector(`.Write_posts_Header`)
+  const postText = document.querySelector(`.Write_posts_TExt`)
+  const postSlogan = document.querySelector(`.Write_posts_Slogan`)
+  const postAction = document.querySelector(`.Write_posts_action`)
+  const buttobWrite = document.querySelector(`.Write_posts_btn`)
+  const postData = document.querySelector(`.Write_posts_data`)
+  buttobWrite.addEventListener("click",()=>{
+    console.log("Pivos")
+    savePost(postImg,postHeader,postText,postSlogan,postAction,postData)
+  })
+});
+function savePost (postImg,postHeader,postText,postSlogan,postAction,postData){
+  const SavDannie={
+    Headers : "postHeader.value",
+    // Slogan: postText.value,
+    // Date: postData.value,
+    // subtitle: postSlogan.value,
+    // photo: postImg.value,
+    // Slogan_left: postAction.value
+  }
+  console.log(SavDannie,"вама")
+  saveProfile("http://localhost:3000/News", SavDannie)
 }
