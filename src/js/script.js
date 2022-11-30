@@ -254,6 +254,7 @@ async function saveProfile(url, data) {
     },
   });
   // clear_input(inputName, inputMail, inputPassword, inputСonfirmationPassword);
+
 }
 
 function SumbitProfile(Names, Mails, Passwords) {
@@ -417,7 +418,6 @@ function checkId(dannie, id) {
   }
 }
 BtnWritePost.addEventListener("click", () => {
-  console.log(`pivo`);
   let WritePostDisplay = document.createElement("div");
   WritePostDisplay.classList.add("Container_write_post");
   WritePostDisplay.innerHTML = `
@@ -441,20 +441,23 @@ BtnWritePost.addEventListener("click", () => {
   const postAction = document.querySelector(`.Write_posts_action`)
   const buttobWrite = document.querySelector(`.Write_posts_btn`)
   const postData = document.querySelector(`.Write_posts_data`)
-  buttobWrite.addEventListener("click",()=>{
-    console.log("Pivos")
+  buttobWrite.addEventListener("click",(e)=>{
+  
     savePost(postImg,postHeader,postText,postSlogan,postAction,postData)
+    e.preventDefault()
   })
 });
 function savePost (postImg,postHeader,postText,postSlogan,postAction,postData){
   const SavDannie={
-    Headers : "postHeader.value",
-    // Slogan: postText.value,
-    // Date: postData.value,
-    // subtitle: postSlogan.value,
-    // photo: postImg.value,
-    // Slogan_left: postAction.value
+    
+    Headers : postHeader.value,
+    Slogan: postText.value,
+    Date: postData.value,
+    subtitle: postSlogan.value,
+    photo: postImg.value,
+    Slogan_left: postAction.value,
+    id: Math.random()
   }
-  console.log(SavDannie,"вама")
-  saveProfile("http://localhost:3000/News", SavDannie)
+  saveProfile("http://localhost:3000/News", SavDannie);
+  
 }
